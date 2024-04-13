@@ -1,0 +1,78 @@
+https://leetcode.com/problems/remove-all-adjacent-duplicates-in-string/
+(easy)
+
+string removeDuplicates(string s) {
+        // int index=0;
+        // while(index<s.length())
+        // {
+        //     if(s[index]==s[index+1])
+        //     {
+        //         s.erase(index,2);
+        //         index=0;
+        //         continue;
+        //     }
+        //     index++;
+        // }
+        // return s;
+or
+        int index=0;
+        string newStr="";
+        int length=s.length();
+        while(index<length)
+        {
+            if(!newStr.empty())
+            {
+                if(newStr.back()==s[index])
+                {
+                    newStr.pop_back();
+                }
+                else
+                {
+                    newStr.push_back(s[index]);
+                }
+                index++;
+            }
+            else
+            {
+                newStr.push_back(s[index]);
+                index++;
+            }
+        }
+        return newStr;
+    }
+or
+int index=0;
+        string ans="";
+        while(index<s.length())
+        {
+            if(ans.length()>0 && (ans[ans.length()-1]==s[index]))
+            ans.pop_back();
+            else
+            ans.push_back(s[index]);
+            index++;
+        }
+        return ans;
+
+only 19/21 tcs
+https://leetcode.com/problems/remove-all-adjacent-duplicates-in-string-ii/
+int i=0,count=1;
+        while(i<s.length())
+        {
+            int j=i;
+            while(s[i]==s[j+1]&&j+1<s.length())
+            {
+                count++;
+                j++;
+            }
+            if(count==k)
+            {
+                int c=i;
+                s.erase(c,k);
+                i=0;
+                count=1;
+                continue;
+            }
+            count=1;
+            i++;
+        }
+        return s;
